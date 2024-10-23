@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register/Login</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #F3F2EC;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+
+        }
+
+        .form-container.active {
+            display: block;
+        }
+
+        .form-container h2 {
+            color: #777;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-container .form-group label {
+            color: #777;
+        }
+
+        .form-container .btn-primary {
+            background-color: #777;
+            border: none;
+        }
+
+        .form-container .btn-primary:hover {
+            background-color: #5a5a5a;
+        }
+
+        .form-container .toggle-link {
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+            color: #777;
+        }
+
+        .form-container .toggle-link a {
+            color: #5a5a5a;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="registerForm" class="form-container active">
+        <h2>Register</h2>
+        <form method="post" action="/auth/insert-data">
+            <div class="form-group">
+                <label for="registerName">Full Name</label>
+                <input type="text" class="form-control" name="name" id="registerName"
+                    value="<%= oldData ? oldData.name : '' %>" placeholder="Enter your name">
+                <div style="color: red;">
+                    <%if(oldData.name=='' ){%>
+                        <p>
+                            <%=errors[0].message%>
+                        </p>
+                        <%}%>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="registerEmail">Email address</label>
+                <input type="email" class="form-control" name="email" value="<%= oldData ? oldData.email : '' %>"
+                    id="registerEmail" placeholder="Enter email">
+            
+                <% if (oldData && oldData.email === '') { %>
+                    <div style="color: red;">
+                        <p>
+                            <%= errors && errors[0] ? errors[0].message : '' %>
+                        </p>
+                    </div>
+                <% } else if (err && err[0]) { %>
+                    <div style="color: red;">
+                        <p>
+                            <%= err[0].message %>
+                        </p>
+                    </div>
+                <% } %>
+            </div>
+            
+
+                            <div class="form-group">
+                                <label for="registerPassword">Password</label>
+                                <input type="password" class="form-control" name="password" id="registerPassword"
+                                    placeholder="Password">
+                                <div style="color: red;">
+                                    <%if(oldData.password=='' ){%>
+
+                                        <p>
+                                            <%=errors[0].message%>
+                                        </p>
+                                     <%}%>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block">Register</button>
+        </form>
+        <p class="toggle-link">Already have an account? <a href="/auth/login" id="showRegister">Login</a></p>
+    </div>
+</body>
+
+
+</html>

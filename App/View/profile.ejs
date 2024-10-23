@@ -1,0 +1,79 @@
+<%-include("header")%>
+
+    <section class="py-5 my-5">
+        <div class="container">
+            <div class="profile-detile">
+                <div class="profile-contain-1">
+                    <div class="account">
+                        <div class="account-image">
+                                <% if(!userDetils.image){%>
+                                <img src="<%=userDetils.image%>" alt="account" title="account">
+                                <%}else { %>
+                                    <img src="<%=userDetils.image%>" alt="account" title="account">
+                                <%}%>
+                        </div>
+                        <h2>User Name</h2>
+                    </div>
+                    <ul>
+                        <li><a href="#" id="accountLink" class="menu-link selected">Account</a></li>
+                        <li><a href="#" id="updateProfileLink" class="menu-link">Update Account</a></li>
+                        <li><a href="#" id="passwordLink" class="menu-link">Change Password</a></li>
+                    </ul>
+
+                </div>
+                <div class="profile-contain-2">
+                    <div class="profile-item" id="profile">
+                        <p><b><span>Name</span></b>: <%=userDetils.name%>
+                        </p>
+                        <p><b><span>Email</span></b>: <%=userDetils.email%>
+                        </p>
+                        <p><b><span>Number</span></b>:<%=userDetils.number%>
+                        </p>
+                        <p><b><span>Address</span></b>: <%=userDetils.address%>
+                        </p>
+                    </div>
+
+                    <div class="profile-item-2 profile-item" id="updateProfile">
+                        <!-- Update profile -->
+                        <form action="/profile/update-profile" method="post" enctype="multipart/form-data">
+                            <input type="hidden" value="<%=userDetils.id%>" name="EditId">
+                            <label for="name">Name</label>
+                            <input type="text" name="name" id="name" value="<%=userDetils.name%>">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email" value="<%=userDetils.email%>">
+
+                            <input type="file" name="image" id="">
+                            <label for="number">Number</label>
+                            <input type="text" name="number" id="number" value="<%=userDetils.number%>">
+                            <label for="address">Address</label>
+                            <textarea name="address" id="address" placeholder="Address"
+                                value="<%=userDetils.address%>"></textarea>
+                            <div class="update-btn">
+                                <button type="submit" class="btn">Back</button>
+                                <button type="submit" class="btn">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="profile-item-2 profile-item" id="changePassword">
+                        <!-- Update Password -->
+                        <form action="">
+                            <label for="name">Curent Password</label>
+                            <input type="password" name="" id="name" style="width: 100%;">
+                            <label for="email">New Password</label>
+                            <input type="password" name="email" id="email" style="width: 100%;">
+                            <label for="">Confirm Password</label>
+                            <input type="password" name="" id="" style="width: 100%;">
+                            <div class="update-btn">
+                                <button href="" class="btn">Back</button>
+                                <button href="#" class="btn">Change Password</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <%-include("footer")%>
